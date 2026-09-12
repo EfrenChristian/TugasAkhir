@@ -16,7 +16,7 @@
 \makeatletter
 \renewcommand{\@maketitle} {\begin{center} {\LARGE \textbf{ \textsc{\@title}} \par} \bigskip {\large \textbf{\textsc{\@author}} }\end{center} }
 \renewcommand{\thispagestyle}[1]{}
-\markright{\textbf{\textsc{AIF184001/AIF184002 \textemdash Rencana Kerja Tugas Akhir \textemdash Sem. Ganjil 2023/2024}}}
+\markright{\textbf{\textsc{AIF184001/AIF184002 \textemdash Rencana Kerja Tugas Akhir \textemdash Sem. Ganjil 2026/2027}}}
 
 \newcommand{\HRule}{\rule{\linewidth}{0.4mm}}
 \renewcommand{\baselinestretch}{1}
@@ -31,11 +31,11 @@
 	\author{\nama \textendash \@npm} 
 	
 	%tulis nama dan NPM anda di sini:
-	\newcommand{\nama}{Lionov}
-	\newcommand{\@npm}{1997730020}
-	\newcommand{\@judultopik}{Simulasi Kerumunan di Museum} % Judul/topik anda
+	\newcommand{\nama}{Edward Efren Christian}
+	\newcommand{\@npm}{6182301083}
+	\newcommand{\@judultopik}{Mesin Pencari Alternatif Perjalanan} % Judul/topik anda
 	\newcommand{\jumpemb}{1} % Jumlah pembimbing, 1 atau 2
-	\newcommand{\tanggal}{01/01/1900}
+	\newcommand{\tanggal}{12/09/2026}
 	
 	% Dokumen hasil template ini harus dicetak bolak-balik !!!!
 	
@@ -44,69 +44,68 @@
 	\pagenumbering{arabic}
 	
 	\section{Deskripsi}
-	Tuliskan deskripsi dari topik tugas akhir yang akan anda ajukan. Di sini dapat dituliskan latar belakang, seperti apa penelitian yang sudah ada sebelumnya dan apa yang akan anda kerjakan. Sertakan gambar agar penjelasan anda menjadi lebih baik.
+	Meningkatnya mobilitas masyarakat antarkota memicu tingginya kebutuhan akan moda transportasi umum yang efisien, terintegrasi, dan mudah diakses. Dalam perencanaan perjalanan antarkota, contohnya rute Bandung ke Jakarta, sering dihadapkan dengan banyaknya pilihan transportasi, mulai dari kereta cepat ({\it Whoosh}), kereta api, bus antarkota, travel ({\it shuttle}), hingga kendaraan pribadi baik via jalan tol maupun jalan biasa. Setiap moda transportasi tersebut memiliki berbagai variabel yang berbeda, dilihat berdasarkan waktu tempuh perjalanan, jadwal keberangkatan, titik penjemputan, hingga harga tiket. Informasi yang rumit ini membuat pengguna harus membuka berbagai aplikasi terpisah hanya untuk membandingkan satu rute perjalanan yang menyebabkan proses memilih moda transportasi memakan waktu.
 	
-	Pada tugas akhir ini, akan dibuat sebuah perangkat lunak yang dapat menampilkan visualisasi dan simulasi kerumunan orang yang berkunjung ke sebuah museum. Dengan menggunakan perangkat lunak tersebut, pengelola museum dapat mengatur tempat peletakan objek sehingga tidak terjadi kerumunan yang terlalu padat.
+	Selama ini, masyarakat cenderung mengandalkan platform penyedia tiket daring atau aplikasi navigasi jalan raya konvensional ({\it Google Maps}). Sayangnya, platform-platform tersebut memiliki keterbatasan dalam menyajikan perbandingan antar moda. Umumnya, penyedia tiket daring hanya berfokus pada transaksi penjualan tiket per moda tanpa membandingkan opsi moda lain, sementara aplikasi navigasi hanya fokus pada rute kendaraan pribadi. Belum ada platform terintegrasi yang berfungsi sebagai mesin pencari alternatif perjalanan yang mampu menyandingkan beberapa alternatif moda perjalanan.
 	
-	Dari berbagai macam teknik yang dapat digunakan untuk melakukan simulasi kerumunan, dipilih dua buah teknik yaitu teknik {\it flow tiles} dan {\it social force model (steering behaviour)}.
+	Untuk mengatasi permasalahan tersebut, dikembangkan sebuah sistem mesin pencari alternatif perjalanan yang mampu memetakan serta merekomendasikan berbagai rute antarkota secara terintegrasi. Sistem ini dirancang untuk menerima titik asal dan titik tujuan dari pengguna sebagai input, lalu secara otomatis memproses, menghitung, dan menampilkan daftar kombinasi alternatif moda transportasi yang tersedia. Mengatasi kelemahan platform pemesanan tunggal, mesin ini berfokus pada integrasi dara rute, estimasi durasi serta analisis biaya dari berbagai opsi kombinasi alternatif moda transportasi.
 	
-	Dst, dst, dst, \ldots\ldots\ldots 
+	Secara teknis, mesin pencari alternatif perjalanan ini mengimplementasikan pemodelan rute perjalanan ke dalam bentuk graf berbobot ({\it weighted graph}), dimana terminal, stasiun, atau titik penjemputan diwakili sebuah node, sedangkan jalur transportasi antartitik diwaliki sebuah {\it edge} berbobot (durasi waktu serta biaya). Proses mencari rute terpendek atau paling optimal mengandalkan algoritma \textit{pathfinding}.
 	
-	Perangkat lunak akan dibuat dengan bantuan {\it framework} OpenSteer. Sebagai studi kasus, museum yang digunakan untuk melakukan simulasi adalah Museum Geologi Bandung.
-	
-	Dst, dst, dst, \ldots\ldots\ldots 
 	
 	\section{Rumusan Masalah}
-	Tuliskan rumusan dari masalah yang akan anda bahas pada tugas akhir ini. Rumusan masalah biasanya berupa kalimat pertanyaan. Gunakan penomoran untuk menuliskan rumusan masalah ini.
+	\begin{enumerate}
+	    \item Bagaimana memodelkan data rute, stasiun/terminal, jadwal, dan estimasi biaya dari berbagai moda transportasi umum antarkota ke dalam bentuk graf berbobot (\textit{weighted graph})?
+        \item Bagaimana mengimplementasikan algoritma \textit{pathfinding} pada graf berbobot untuk menghasilkan rekomendasi kombinasi rute perjalanan yang optimal?
+	\end{enumerate}
 	
 	\section{Tujuan}
-	Tuliskan tujuan dari topik tugas akhir yang anda ajukan. Tujuan penelitian biasanya berkaitan erat dengan pertanyaan yang diajukan di bagian rumusan masalah. Gunakan penomoran untuk menuliskan rumusan masalah ini, di mana tiap nomor berkaitan dengan nomor pada rumusan masalah.
+	\begin{enumerate}
+	    \item Membangun pemodelan data rute, titik transit tranportasi antarkota, jadwal, dan estimasi biaya ke dalam struktur data graf berbobot (\textit{weighted graph})
+        \item Mengimplementasikan algoritma \textit{pathfinding} untuk menghitung dan menentukan opsi rute perjalanan paling efisien dari segi durasi dan biaya
+	\end{enumerate}
 	
 	\section{Deskripsi Perangkat Lunak}
-	Tuliskan deksripsi dari perangkat lunak yang akan anda hasilkan. Apa saja fitur yang disediakan oleh PL tersebut dan apa saja kemampuan dari PL tersebut. Perhatikan contoh di bawah ini:
-	
 	Perangkat lunak akhir yang akan dibuat memiliki fitur minimal sebagai berikut:
 	\begin{itemize}
-		\item Pengguna dapat melihat denah Musem Geologi Bandung dalam bidang dua dimensi. Sedangkan pengunjung direpresentasikan menggunakan lingkaran-lingkaran kecil (tidak menggunakan gambar manusia yang diambil dari atas)
-		\item Pengguna dapat memunculkan atau menghilangkan gambar {\it flow tiles} pada denah museum. 
-		\item Pengguna dapat mengatur jalannya simulasi: memulai(start) simulasi, menunda(pause) simulasi, melanjutkan(continue) simulasi, maupun menghentikan(stop) simulasi
-		\item Pengguna dapat mengatur banyaknya pengunjung di dalam museum, baik melalui perubahan frekuensi kedatangan pengunjung maupun menambahkan dan menghapus pengunjung satu-persatu secara manual.
-		\item Posisi kamera dapat diubah (pergerakan di bidang tiga dimensi) sehingga pengguna dapat melihat simulasi di museum dari berbagai arah. 
-		\item Posisi kamera dapat diubah untuk emngikuti perjalanan seorang pengunjung di dalam 
-		\item Pengguna dapat memilih apakah akan menggunakan teknik {\it flow tiles} atau tidak pada saat simulasi berlangsung
-		\item Jenis {\it flow tiles} yang digunakan dapat diubah-ubah pada saat simulasi sedang berlangsung
-		
+		\item Pengguna dapat memasukan titik awal dan titik akhir perjalanan
+        \item Pengguna dapat memilih tanggal perjalanan
+		\item Pengguna dapat melihat berbagai opsi kombinasi moda transportasi
+		\item Pengguna dapat memilih opsi kombinasi moda transportasi yang tersedia
+		\item Pengguna dapat melihat peta berdasarkan opsi yang dipilih
+        \item Pengguna dapat mengurutkan opsi berdasarkan harga atau waktu tempuh
+        \item Pengguna dapat memilih negara
 	\end{itemize}
 	
 	\section{Detail Pengerjaan Tugas Akhir}
-	Tuliskan bagian-bagian pengerjaan skripsi secara detail. Bagian pekerjaan tersebut mencakup awal hingga akhir skripsi, termasuk di dalamnya pengerjaan dokumentasi skripsi, pengujian, survei, dll.
-	
 	Bagian-bagian pekerjaan skripsi ini adalah sebagai berikut :
 	\begin{enumerate}
-		\item Melakukan survei ke Museum Geologi Bandung untuk mendapatkan denah serta mengetahui perilaku pengunjung museum secara umum (arah perjalanan, kecepatan, lama melihat objek, dll)
-		\item Melakukan analisis pada hasil survei terhadap pergerakan pengunjung di museum dan membuat rancangan denah di komputer yang dilengkapi dengan penghalang dan objek di museum.
-		\item Melakukan studi literatur mengenai sifat kolektif suatu kerumunan, teknik {\it social force model} dan teknik {\it flow tiles}
-		\item Mempelajari bahasa pemrograman C++ dan cara menggunakan framework OpenSteer
-		\item Merancang pergerakan kerumunan di dalam museum menggunakan teknik {\it social force model} dan {\it flow tiles} serta menggunakan teknik lainnya seperti konsep pathway dan waypoints. Selain itu, dirancang pula adanya waktu tunggu (pada saat pengunjung melihat objek di museum) dan cara pembuatan jalur bagi setiap individu pengunjung
-		\item Melakukan analisa dan merancang struktur data yang cocok untuk menyimpan penghalang (obstacle)
-		\item Mengimplementasikan keseluruhan algoritma dan struktur data yang dirancang, dengan menggunakan framework OpenSteer 
-		\item Melakukan pengujian (dan eksperimen) yang melibatkan responde untuk menilai hasil simulasi secara kualitatif
+		\item Melakukan studi literatur mengenai moda transportasi umum antarkota beserta rute, jadwal, dan biaya
+		\item Melakukan studi literatur mengenai pemodelan graf berbobot (\textit{weighted graph}) dan algoritma \textit{pathfinding} untuk pencarian rute optimal
+		\item Mempelajar teknologi basis data dan kerangka kerja (\textit{framework}) yang digunakan untuk pengembangan mesin pencari alternatif perjalanan
+		\item Merancang arsitektur sistem, pemodelan data graf, serta antarmuka pengguna (\textit{user interface})
+		\item Mengimplementasikan struktur data graf dan algoritma \textit{pathfinding} untuk menghitung kombinasi rute multimodal
+		\item Mengembangkan mesin pencari alternatif perjalanan
+		\item Melakukan pengujian sistem dan analisis performa algoritma \textit{pathfinding} dalam merekomendasikan rute
 		\item Menulis dokumen tugas akhir.
 	\end{enumerate}
 	
 	\section{Rencana Kerja}
 	Rincian capaian yang direncanakan di Tugas Akhir 1 adalah sebagai berikut:
 	\begin{enumerate}
-		\item
-		\item
-		\item
+		\item Melakukan studi literatur mengenai moda transportasi antarkota beserta rute, jadwal, dan biaya.
+		\item Melakukan studi literatur mengenai pemodelan graf berbobot (\textit{weighted graph}) dan algoritma \textit{pathfinding} untuk pencarian rute optimal
+		\item Mempelajari teknologi basis data dan kerangka kerja (\textit{framework}) yang digunakan untuk pengembangan mesin pencari alternatif perjalanan
+        \item Merancang arsitektur sistem, pemodelan data graf, serta antarmuka pengguna (\textit{user interface})
+        \item Menulis sebagian dokumen tugas akhir (Bab 1, 2, dan 3).
 	\end{enumerate}
 	
 	Sedangkan yang akan diselesaikan di Tugas Akhir 2 adalah sebagai berikut:
 	\begin{enumerate}
-		\item
-		\item
-		\item
+		\item Mengimplementasikan struktur data graf dan algoritma \textit{pathfinding} untuk menghitung kombinasi rute \textit{multimodal}.
+		\item Mengembangkan mesin pencari alternatif perjalanan.
+		\item Melakukan pengujian sistem dan analisis performa algoritma \textit{pathfinding} dalam merekomendasikan rute
+        \item Menyelesaikan dokumen tugas akhir
 	\end{enumerate}
 	
 	\vspace{1cm}
@@ -129,6 +128,6 @@
 		\vspace{0.5cm}
 	}{
 		% \centering Bandung, \makebox[0.5cm]{\hrulefill}/\makebox[0.5cm]{\hrulefill}/2013\\
-		\vspace{2cm} Nama: \makebox[3cm]{\hrulefill}\\ Pembimbing Tunggal
+		\vspace{2cm} Pascal Alfadian Nugroho, S.Kom., M.Comp.\\ Pembimbing Tunggal
 	}
 \end{document}
