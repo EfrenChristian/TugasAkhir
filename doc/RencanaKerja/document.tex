@@ -46,22 +46,22 @@
 	\section{Deskripsi}
 	Meningkatnya mobilitas masyarakat antarkota memicu tingginya kebutuhan akan moda transportasi umum yang efisien, terintegrasi, dan mudah diakses. Dalam perencanaan perjalanan antarkota, contohnya rute Bandung ke Jakarta, sering dihadapkan dengan banyaknya pilihan transportasi, mulai dari kereta cepat ({\it Whoosh}), kereta api, bus antarkota, travel ({\it shuttle}), hingga kendaraan pribadi baik via jalan tol maupun jalan biasa. Setiap moda transportasi tersebut memiliki berbagai variabel yang berbeda, dilihat berdasarkan waktu tempuh perjalanan, jadwal keberangkatan, titik penjemputan, hingga harga tiket. Informasi yang rumit ini membuat pengguna harus membuka berbagai aplikasi terpisah hanya untuk membandingkan satu rute perjalanan yang menyebabkan proses memilih moda transportasi memakan waktu.
 	
-	Selama ini, masyarakat cenderung mengandalkan platform penyedia tiket daring atau aplikasi navigasi jalan raya konvensional ({\it Google Maps}). Sayangnya, platform-platform tersebut memiliki keterbatasan dalam menyajikan perbandingan antar moda. Umumnya, penyedia tiket daring hanya berfokus pada transaksi penjualan tiket per moda tanpa membandingkan opsi moda lain, sementara aplikasi navigasi hanya fokus pada rute kendaraan pribadi. Belum ada platform terintegrasi yang berfungsi sebagai mesin pencari alternatif perjalanan yang mampu menyandingkan beberapa alternatif moda perjalanan.
+	Selama ini, masyarakat cenderung mengandalkan platform penyedia tiket daring atau aplikasi navigasi jalan raya konvensional (Google Maps). Sayangnya, platform-platform tersebut memiliki keterbatasan dalam menyajikan perbandingan antar moda. Umumnya, penyedia tiket daring hanya berfokus pada transaksi penjualan tiket per moda tanpa membandingkan opsi moda lain, sementara aplikasi navigasi hanya fokus pada rute kendaraan pribadi. Belum ada platform terintegrasi yang berfungsi sebagai mesin pencari alternatif perjalanan yang mampu menyandingkan beberapa alternatif moda perjalanan. Padahal, perjalanan antarkota sering kali mengharuskan transit atau pengguna berpindah dari satu moda ke moda lainnya untuk melengkapi rute dari titik asal ke titik tujuan. Ketiadaan integrasi data perpindahan moda ini menambah kesulitan pengguna karena harus menghitung estimasi waktu tunggu, jarak perpindahan stasiun/terminal.
 	
-	Untuk mengatasi permasalahan tersebut, dikembangkan sebuah sistem mesin pencari alternatif perjalanan yang mampu memetakan serta merekomendasikan berbagai rute antarkota secara terintegrasi. Sistem ini dirancang untuk menerima titik asal dan titik tujuan dari pengguna sebagai input, lalu secara otomatis memproses, menghitung, dan menampilkan daftar kombinasi alternatif moda transportasi yang tersedia. Mengatasi kelemahan platform pemesanan tunggal, mesin ini berfokus pada integrasi dara rute, estimasi durasi serta analisis biaya dari berbagai opsi kombinasi alternatif moda transportasi.
+	Untuk mengatasi permasalahan tersebut, dikembangkan sebuah sistem mesin pencari alternatif perjalanan yang mampu memetakan serta merekomendasikan berbagai rute antarkota secara terintegrasi. Sistem ini dirancang untuk menerima titik asal dan titik tujuan dari pengguna sebagai input, lalu secara otomatis memproses, menghitung, dan menampilkan daftar kombinasi alternatif moda transportasi yang tersedia baik rute langsung atau rute yang memerlukan perpindahan moda transportasi. Mengatasi kelemahan platform pemesanan tunggal, mesin ini berfokus pada integrasi dara rute, estimasi durasi serta analisis biaya dari berbagai opsi kombinasi alternatif moda transportasi.
 	
-	Secara teknis, mesin pencari alternatif perjalanan ini mengimplementasikan pemodelan rute perjalanan ke dalam bentuk graf berbobot ({\it weighted graph}), dimana terminal, stasiun, atau titik penjemputan diwakili sebuah node, sedangkan jalur transportasi antartitik diwaliki sebuah {\it edge} berbobot (durasi waktu serta biaya). Proses mencari rute terpendek atau paling optimal mengandalkan algoritma \textit{pathfinding}.
+	Secara teknis, mesin pencari alternatif perjalanan ini mengimplementasikan pemodelan rute perjalanan ke dalam bentuk graf berbobot ({\it weighted graph}), dimana terminal, stasiun, atau titik penjemputan diwakili sebuah node, sedangkan jalur transportasi antartitik diwaliki sebuah {\it edge} berbobot (durasi waktu serta biaya). Bobot pada \textit{edge} juga memperhitungkan variabel transit seperti waktu tunggu, jarak antar stasiun/terminal. Proses mencari rute terpendek atau paling optimal mengandalkan algoritma \textit{pathfinding}.
 	
 	
 	\section{Rumusan Masalah}
 	\begin{enumerate}
-	    \item Bagaimana memodelkan data rute, stasiun/terminal, jadwal, dan estimasi biaya dari berbagai moda transportasi umum antarkota ke dalam bentuk graf berbobot (\textit{weighted graph})?
+	    \item Bagaimana memodelkan data rute, stasiun/terminal, titik transit, jadwal, dan estimasi biaya dari berbagai moda transportasi umum atau pribadi ke dalam bentuk graf berbobot (\textit{weighted graph})?
         \item Bagaimana mengimplementasikan algoritma \textit{pathfinding} pada graf berbobot untuk menghasilkan rekomendasi kombinasi rute perjalanan yang optimal?
 	\end{enumerate}
 	
 	\section{Tujuan}
 	\begin{enumerate}
-	    \item Membangun pemodelan data rute, titik transit tranportasi antarkota, jadwal, dan estimasi biaya ke dalam struktur data graf berbobot (\textit{weighted graph})
+	    \item Membangun pemodelan data rute, stasiun/terminal, titik transit, jadwal, dan estimasi biayadari berbagai moda transportasi umum atau pribadi ke dalam struktur data graf berbobot (\textit{weighted graph})
         \item Mengimplementasikan algoritma \textit{pathfinding} untuk menghitung dan menentukan opsi rute perjalanan paling efisien dari segi durasi dan biaya
 	\end{enumerate}
 	
@@ -82,7 +82,7 @@
 	\begin{enumerate}
 		\item Melakukan studi literatur mengenai moda transportasi umum antarkota beserta rute, jadwal, dan biaya
 		\item Melakukan studi literatur mengenai pemodelan graf berbobot (\textit{weighted graph}) dan algoritma \textit{pathfinding} untuk pencarian rute optimal
-		\item Mempelajar teknologi basis data dan kerangka kerja (\textit{framework}) yang digunakan untuk pengembangan mesin pencari alternatif perjalanan
+		\item Mempelajari teknologi basis data dan kerangka kerja (\textit{framework}) yang digunakan untuk pengembangan mesin pencari alternatif perjalanan
 		\item Merancang arsitektur sistem, pemodelan data graf, serta antarmuka pengguna (\textit{user interface})
 		\item Mengimplementasikan struktur data graf dan algoritma \textit{pathfinding} untuk menghitung kombinasi rute multimodal
 		\item Mengembangkan mesin pencari alternatif perjalanan
