@@ -5,40 +5,70 @@
 \section{Latar Belakang}
 \label{sec:label}
 
-Bagian ini akan diisi dengan apa yang melatarbelakangi pembuatan template skripsi ini.
-Termasuk juga masalah-masalah yang akan dihadapi untuk membuatnya, termasuk kurangnya kemampuan penguasaan \LaTeX{} sehingga template ini dibuat dengan mengandalkan berbagai contoh yang tersebar di dunia maya, yang digabung-gabung menjadi satu jua.
-Bagian lain juga akan dilengkapi, untuk sementara diisi dengan lorem ipsum versi bahasa inggris.
-
-\dtext{5-10}
+Meningkatnya mobilitas masyarakat antarkota memicu tingginya kebutuhan akan moda transportasi umum yang efisien, terintegrasi, dan mudah diakses. Dalam perencanaan perjalanan antarkota, contohnya rute Bandung ke Jakarta, sering dihadapkan dengan banyaknya pilihan transportasi, mulai dari kereta cepat ({\it Whoosh}), kereta api, bus antarkota, travel ({\it shuttle}), hingga kendaraan pribadi baik via jalan tol maupun jalan biasa. Setiap moda transportasi tersebut memiliki berbagai variabel yang berbeda, dilihat berdasarkan waktu tempuh perjalanan, jadwal keberangkatan, titik penjemputan, hingga harga tiket. Informasi yang rumit ini membuat pengguna harus membuka berbagai aplikasi terpisah hanya untuk membandingkan satu rute perjalanan yang menyebabkan proses memilih moda transportasi memakan waktu.
+	
+	Selama ini, masyarakat cenderung mengandalkan platform penyedia tiket daring atau aplikasi navigasi jalan raya konvensional (Google Maps). Sayangnya, platform-platform tersebut memiliki keterbatasan dalam menyajikan perbandingan antarmoda. Umumnya, platform pemesanan tiket daring hanya berfokus pada transaksi per moda tanpa menyajikan perbandingan antar-alternatif. Di sisi lain, aplikasi navigasi seperti Google Maps, meskipun mampu menampilkan rute transportasi umum, belum mencakup moda yang tidak terintegrasi dalam sistem mereka serta tidak memfasilitasi pemesanan tiket secara langsung. Belum ada platform terintegrasi yang berfungsi sebagai mesin pencari alternatif perjalanan yang mampu menyandingkan berbagai alternatif moda perjalanan. Padahal, perjalanan antarkota sering kali mengharuskan transit atau pengguna berpindah dari satu moda ke moda lainnya untuk melengkapi rute dari titik asal ke titik tujuan. Ketiadaan integrasi data perpindahan moda ini menambah kesulitan pengguna karena harus menghitung estimasi waktu tunggu, jarak perpindahan antarstasiun atau terminal.
+	
+	Untuk mengatasi permasalahan tersebut, dikembangkan sebuah sistem mesin pencari alternatif perjalanan yang mampu memetakan serta merekomendasikan berbagai rute antarkota secara terintegrasi. Sistem ini dirancang untuk menerima titik asal dan titik tujuan dari pengguna sebagai input, lalu secara otomatis memproses, menghitung, dan menampilkan daftar kombinasi alternatif moda transportasi yang tersedia baik rute langsung atau rute yang memerlukan perpindahan moda transportasi. Mengatasi kelemahan platform pemesanan tunggal, mesin ini berfokus pada integrasi data rute, estimasi durasi serta analisis biaya dari berbagai opsi kombinasi alternatif moda transportasi.
+	
+	Secara teknis, mesin pencari alternatif perjalanan ini mengimplementasikan pemodelan rute perjalanan ke dalam bentuk graf berbobot ({\it weighted graph}), dimana terminal, stasiun, atau titik penjemputan diwakili sebuah node, sedangkan jalur transportasi antartitik diwakili sebuah {\it edge} berbobot (durasi waktu serta biaya). Bobot pada \textit{edge} juga memperhitungkan variabel transit seperti waktu tunggu, jarak antarstasiun atau terminal. Proses mencari rute terpendek atau paling optimal mengandalkan algoritma \textit{pathfinding}.
 
 \section{Rumusan Masalah}
 \label{sec:rumusan}
-Bagian ini akan diisi dengan penajaman dari masalah-masalah yang sudah diidentifikasi di bagian sebelumnya. 
-
-\dtext{6}
+\begin{enumerate}
+	    \item Bagaimana memodelkan data rute, stasiun/terminal, titik transit, jadwal, dan estimasi biaya dari berbagai moda transportasi umum atau pribadi ke dalam bentuk graf berbobot (\textit{weighted graph})?
+        \item Bagaimana mengimplementasikan algoritma \textit{pathfinding} pada graf berbobot untuk menghasilkan rekomendasi kombinasi rute perjalanan yang optimal?
+        \item Bagaimana referensi pengguna dalam memilih moda, rute, dan kombinasi transportasi?
+	\end{enumerate}
 
 \section{Tujuan}
 \label{sec:tujuan}
-Akan dipaparkan secara lebih terperinci dan tersturkur apa yang menjadi tujuan pembuatan template skripsi ini
-
-\dtext{7}
+\begin{enumerate}
+	    \item Membangun pemodelan data rute, stasiun/terminal, titik transit, jadwal, dan estimasi biayadari berbagai moda transportasi umum atau pribadi ke dalam struktur data graf berbobot (\textit{weighted graph}).
+        \item Mengimplementasikan algoritma \textit{pathfinding} untuk menghitung dan menentukan opsi rute perjalanan paling efisien dari segi durasi dan biaya.
+        \item Memahami referensi pengguna dalam memilih moda, rute, dan kombinasi.
+	\end{enumerate}
 
 \section{Batasan Masalah}
 \label{sec:batasan}
-Untuk mempermudah pembuatan template ini, tentu ada hal-hal yang harus dibatasi, misalnya saja bahwa template ini bukan berupa style \LaTeX{} pada umumnya (dengan alasannya karena belum mampu jika diminta membuat seperti itu)
-
-\dtext{8}
+\begin{enumerate}
+	    \item Cakupan Wilayah dan Rute %seindonesia, atau pulau jawa atau apa?
+        \item Moda Transportasi yang diakomodasi dalam pemodelan mencakup kereta cepat, kereta api, bus antarkota, travel/shuttle, pesawat terbang, serta kendaraan pribadi (jalur tol dan jalan non-tol)
+        \item Batas fungsi sistem yang akan dikembangkan berfokus sebagai mesin pencari, pemetak, dan penyedia rekomendasi rute. Sistem tidak memfasilitasi transaksi pembayaran dan reservasi.
+        \item Data yang digunakan adalah jadwal keberangkatan, harga tiket, dan titik transit %perlu data kondisi realtime seperti penutupan jalan mendadak?
+        \item Preferensi pengguna dinilai berdasarkan apakah pengguna memprioritaskan waktu tercepat atau biaya termurah atau jumlah transit terkecil.
+	\end{enumerate}
 
 \section{Metodologi}
 \label{sec:metlit}
-Tentunya akan diisi dengan metodologi yang serius sehingga templatenya terkesan lebih serius.
-
-\dtext{9}
+Metodologi yang akan digunakan dalam pembuatan tugas akhir ini adalah sebagai berikut:
+	\begin{enumerate}
+	   \item Melakukan studi literatur mengenai \textit{multimodal journey planner}, pemodelan graf berbobot (\textit{weighted graph}), dan algoritma \textit{pathfinding}.
+	   \item Melakukan analisis kebutuhan sistem serta pengumpulan data rute, moda transportasi (Whoosh, KAI, bus, \textit{shuttle}, dan kendaraan pribadi), tarif, serta variabel transit antarkota.
+	   \item Memodelkan jaringan transportasi antarkota ke dalam struktur graf terarah dan berbobot (\textit{weighted directed graph}) berbasis variabel waktu tempuh, biaya, dan penalti transit.
+	   \item Merancang arsitektur sistem, alur pemrosesan pencarian rute, serta desain antarmuka pengguna (\textit{user interface}) mesin pencari alternatif perjalanan.
+	   \item Mengimplementasikan algoritma \textit{pathfinding} (seperti Dijkstra atau A-Star) untuk memproses pencarian kombinasi rute langsung maupun rute transit.
+	   \item Membangun dan mengintegrasikan sistem mesin pencari alternatif perjalanan secara utuh.
+	   \item Melakukan pengujian fungsionalitas sistem.
+	   \item Menganalisis dan mengevaluasi akurasi serta kelayakan hasil rekomendasi rute berdasarkan berbagai skenario pencarian pengguna.
+	   \item Menulis dokumen tugas akhir.
+\end{enumerate}
 
 \section{Sistematika Pembahasan}
 \label{sec:sispem}
-Rencananya Bab 2 akan berisi petunjuk penggunaan template dan dasar-dasar \LaTeX.
-Mungkin bab 3,4,5 dapt diisi oleh ketiga jurusan, misalnya peraturan dasar skripsi atau pedoman penulisan, tentu jika berkenan.
-Bab 6 akan diisi dengan kesimpulan, bahwa membuat template ini ternyata sungguh menghabiskan banyak waktu.
-
-\dtext{10}
+Tugas akhir ini akan disusun menjadi beberapa bab sebagai berikut:
+\begin{itemize}
+    \item \textbf{Bab 1:} Pendahuluan
+    \\ Bab ini berisi latar belakang, rumusan masalah, tujuan, batasan masalah, metodologi, dan sistematika pembahasan.
+    \item \textbf{Bab 2:} Landasan Teori
+    \\ Bab ini berisi dasar dari teori-teori yang dibutuhkan dalam penelitian ini, seperti graf berbobot dan terarah, perencanaan perjalanan multimoda  dan juga algoritma-algoritma \textit{shortest path} yang akan diimplementasikan, seperti algoritma Dijkstra, algoritma Floyd-Warshall, dan algoritma A-Star.
+    \item \textbf{Bab 3:} Analisis
+    \\ Bab ini berisi analisis dari sistem transportasi yang saat ini yang berjalan saat ini dan juga analisis sistem usulan.  
+    \item \textbf{Bab 4:} Perancangan
+    \\ Bab ini berisi rancangan dari pembangunan Mesin Pencari Alternatif Perjalanan
+    \item \textbf{Bab 5:} Implementasi dan Pengujian
+    \\ Bab ini berisikan hasil implementasi yang telah dilakukan untuk pembangunan Mesin Pencari Alternatif Perjalanan. Selain itu, bab ini juga berisi pengujian fungsi-fungsi pada software.
+    \item \textbf{Bab 6:} Kesimpulan dan Saran
+    \\ Bab ini berisi kesimpulan dari hasil pembangunan mesin pecari alternatif perjalanan dan juga saran untuk pengembangan berikutnya.
+        
+\end{itemize}
